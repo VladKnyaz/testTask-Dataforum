@@ -1,0 +1,15 @@
+.carousel {
+    margin-top: 40px;
+    &__container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .inner {
+        position: relative;
+        // gap: 30px;
+        padding-top: 39px;
+        padding-bottom: 40px;
+        border-top: 1px #ABABAB solid;
+        border-bottom: 1px #ABABAB solid;
+    }
+}
