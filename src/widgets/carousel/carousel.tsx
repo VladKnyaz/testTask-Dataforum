@@ -19,7 +19,7 @@ const CarouselWidget: FC = () => {
         if (carouselRef.current?.state.currentSlide === activeIndex) return;
 
         setTimeout(() => {
-            if (eventData.valueEventForum.schedule[activeIndex].id == eventData.    valueEventForum.schedule.at(-1)?.id) {
+            if (eventData.valueEventForum.schedule[activeIndex].id == eventData.valueEventForum.schedule.at(-1)?.id) {
                 return carouselRef.current?.next(activeIndex)
             }
             return carouselRef.current?.goToSlide(activeIndex)
