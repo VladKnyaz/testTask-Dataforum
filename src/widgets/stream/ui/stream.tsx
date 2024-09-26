@@ -3,7 +3,6 @@ import style from "./stream.module.scss"
 import Chat from './chat/chat';
 import { EventContext, EventForum } from '../../../shared/contexts/eventContext';
 import classNames from 'classnames';
-import { socket } from '../../../shared/socket/socket';
 import { EStatusStream } from '../../../shared/types';
 
 
@@ -16,29 +15,15 @@ const Stream: FC = () => {
     useEffect(()=>{
         if (!eventData) return;
 
-        // socket.on('room-status', (status: EStatusStream)=>{
-        //     setStatusStream(status)
-        // })
-    
-        // socket.on('current-event', (id: number)=>{
-        //     console.log(eventData.valueEventForum);
-            
-        //     const scheduleItem = eventData.valueEventForum?.schedule.find((item)=>item.id == id)
-            
-        //     if (scheduleItem) {
-        //         setText(scheduleItem?.item.title)
-        //     }
-        // })
-
-    }, [socket, eventData])
-
-    useEffect(()=>{
-        if (!eventData) return;
-
         const scheduleItem = eventData.valueEventForum.schedule.find((item)=>item.is_active)
         if (scheduleItem) {
             setText(scheduleItem?.item.title)
         }
+
+        if(eventData.streamStatus) {
+            setStatusStream(eventData.streamStatus);
+            return
+        }; 
        
         if (eventData.valueEventForum.is_running) return setStatusStream(EStatusStream.start);
         if (eventData.valueEventForum.is_ended) return setStatusStream(EStatusStream.stop);
@@ -47,7 +32,8 @@ const Stream: FC = () => {
 
         if (!eventData.valueEventForum.is_running && !eventData.valueEventForum.is_ended && Number(eventData.valueEventForum.elapsed_time) == 0) return setStatusStream(EStatusStream.waiting);
 
-    }, [eventData])
+    }, [eventData.valueEventForum, eventData.streamStatus])
+    
 
 
     return <div className={style.stream}>

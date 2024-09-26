@@ -22,6 +22,7 @@ function App() {
     title: "",
     schedule: []
 })
+const [streamStatus, setStreamStatus] = useState<EStatusStream|null>(null)
 
   useEffect(()=>{
     const getData = async () =>{
@@ -37,16 +38,17 @@ function App() {
     if (!valueEventForum) return;
 
     socket.on('room-status', (status: EStatusStream)=>{
-      // valueEventForum.s
+      setStreamStatus(status)
     })
 
     socket.on('current-event', (id: number)=>{
+      console.log(id);
+      
       valueEventForum.schedule = valueEventForum.schedule.map((item)=>{
           item.is_active = false;
           if (item.id == id) item.is_active = true;
           return item;
       })
-      console.log(valueEventForum.schedule);
       
       setValueEventForum({...valueEventForum, schedule: valueEventForum.schedule})
       
@@ -56,7 +58,7 @@ function App() {
   
 
   return (
-    <EventContext.Provider value={{setValueEventForum, valueEventForum}}>
+    <EventContext.Provider value={{setValueEventForum, valueEventForum, streamStatus}}>
       <div className="blob"></div>
       <Header></Header>
       <Home></Home>

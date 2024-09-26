@@ -16,6 +16,10 @@ const Chat: FC = () => {
             <p className={style.text}>Спасибо Анне Анатольевне за очень интересный 
             доклад!</p>  
           </div>
+          <div className={style.comment}>
+            <p className={style.title}>Екатерина Овсянина</p>  
+            <p className={style.text}>Подскажите когда секция про Остеопороз у мужчин?</p>  
+          </div>
           <div className={classnames(style.comment,{[style.myComment]: true})}>
             <p className={style.title}>Екатерина Овсянина</p>  
             <p className={style.text}>Вопрос спикеру: <br/>
@@ -26,14 +30,11 @@ const Chat: FC = () => {
       
       <div className={style.send__form}>
         <button className={style.info}>
-          <img src="" alt="" />
         </button>
         <input type="text" placeholder='Введите сообщение' />
         <button className={style.smile}>
-          <img src="" alt="" />
         </button>
         <button className={style.button}>
-          <img src="" alt="" />
         </button>
       </div>
     </div>;

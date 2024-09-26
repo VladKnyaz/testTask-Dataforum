@@ -1,0 +1,33 @@
+.arrow {
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    background: #262740;
+    border: none;
+    border-radius: 50%;
+    bottom: 18px;
+    transition: 0.2s all;
+    background-image: url('./images/arrow.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    &:hover {
+        background-color: #1c1d30;
+    }
+
+    @media (max-width: 600px) {
+        bottom: 100px;
+    }
+}
+
+.right {
+    right: 0;
+    margin-right: 5%;
+    transform: rotate(180deg);
+    background-position: 40% center;
+
+}
+
+.left {
+    margin-left: 5%;
+    background-position: 40% center;
+}

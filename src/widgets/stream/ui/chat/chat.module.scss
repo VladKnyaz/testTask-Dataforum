@@ -26,6 +26,7 @@
         .comments {
             margin-top: 20px;
             .comment {
+                margin-top: 10px;
                 padding: 12px;
                 padding-top: 4px;
                 padding-bottom: 1px;
@@ -37,11 +38,11 @@
                 .title {
                     color: #fff;
                     font-size: 14px;
-                    font-weight: 400;
+                    font-weight: 300;
                     line-height: 17.78px;
                 }
                 .text {
-                    margin-top: 10px;
+                    margin-top: 5px;
                     color: #A4A9AD;
                     font-size: 12px;
                     font-weight: 400;
@@ -89,16 +90,40 @@
             border-radius: 50%;
             width: 28px;
             height: 28px;
+            transition: 0.2s all;
+            &:hover {
+                opacity: 0.8;
+            }
         }
+
         .info {
-            background: red;
+            background: none;
+            background-image: url('./images/quest.svg');
+            background-repeat: no-repeat;
+            background-position: center center;
+  
         }
         .smile {
-            background: red;
+            background: none;
+            background-image: url('./images/smile.png');
+            background-repeat: no-repeat;
+            background-position: center center;
         }
+        
         .button {
             background: #0BD28A;
+            background-image: url('./images/sendCircle.svg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            
+        }
+
+        @media (max-width: 600px) {
+            .smile {
+                background-image: url('./images/smile.svg');
+            }
         }
     }
     
 }
+

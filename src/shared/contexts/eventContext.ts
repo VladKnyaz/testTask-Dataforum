@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { EStatusStream } from "../types";
 
 export interface EventForum {
     id: number;
@@ -33,6 +34,7 @@ export interface Item {
 interface IProps {
     setValueEventForum: React.Dispatch<React.SetStateAction<EventForum>>;
     valueEventForum: EventForum;
+    streamStatus: EStatusStream | null;
 }
 
 export const EventContext = createContext<IProps>({
@@ -50,5 +52,6 @@ export const EventContext = createContext<IProps>({
         date: "",
         title: "",
         schedule: []
-    }
+    },
+    streamStatus: EStatusStream.waiting
 })

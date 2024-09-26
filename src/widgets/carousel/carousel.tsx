@@ -1,54 +1,33 @@
-import { FC, useContext, useEffect, useRef, useState } from 'react';
+import { FC, useContext, useEffect, useRef } from 'react';
 import style from "./carousel.module.scss"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ItemCarousel from './ui/item/item';
 import { EventContext } from '../../shared/contexts/eventContext';
 import { socket } from '../../shared/socket/socket';
+import { LeftArrow, RightArrow } from './ui/arrows';
 
 
 const CarouselWidget: FC = () => {
     const carouselRef = useRef<Carousel | null>(null)
     const eventData = useContext(EventContext)  
-    const [activeEventIndex, setActiveEventIndex] = useState<number>(0);
-
-    // socket.on("current-event", (id: number) => {
-        
-    //     if (eventData?.valueEventForum.schedule[activeEventIndex].id == id) return;
-
-    //     const activeIndex = eventData?.valueEventForum.schedule.findIndex((item)=>item.id == id) || 0;
-    //     setActiveEventIndex(activeIndex)
-
-    //     if (carouselRef.current?.state.currentSlide === activeIndex) return;
-        
-        
-    //     setTimeout(() => {
-    //         if (carouselRef.current?.state.currentSlide! > activeIndex) {
-    //             return carouselRef.current?.goToSlide(activeIndex)
-    //         }
-    //         carouselRef.current?.next(activeIndex-1)
-    //     }, 700);
-    // });
-
+    
     useEffect(()=>{
-        if (!eventData) return;
-        const activeIndex = eventData?.valueEventForum.schedule.findIndex((item)=>item.is_active) || 0;
-        setActiveEventIndex(activeIndex);
-
+        if (!eventData.valueEventForum) return;
+        const activeIndex = eventData.valueEventForum.schedule.findIndex((item)=>item.is_active) || 0;
+        if (activeIndex < 0) return;
+        
         if (carouselRef.current?.state.currentSlide === activeIndex) return;
 
         setTimeout(() => {
-
-            if (carouselRef.current?.state.currentSlide! > activeIndex) {
-                return carouselRef.current?.goToSlide(activeIndex)
+            if (eventData.valueEventForum.schedule[activeIndex].id == eventData.    valueEventForum.schedule.at(-1)?.id) {
+                return carouselRef.current?.next(activeIndex)
             }
+            return carouselRef.current?.goToSlide(activeIndex)
             
-            carouselRef.current?.next(activeIndex)
         }, 900);
 
-        return ()=>{
-            socket.off('current-event');
-        }
+       
     }, [carouselRef.current, eventData.valueEventForum])
 
 
@@ -57,6 +36,8 @@ const CarouselWidget: FC = () => {
         {eventData?.valueEventForum.schedule && eventData.valueEventForum.schedule.length > 0 && <Carousel
             ref={carouselRef}
             arrows
+            customLeftArrow={<LeftArrow/>}
+            customRightArrow={<RightArrow/>}
             containerClass={style.carousel__container}
             dotListClass=""
             draggable
@@ -106,7 +87,7 @@ const CarouselWidget: FC = () => {
             
         >
             {eventData && eventData.valueEventForum.schedule.map((item, index)=>{
-                return <ItemCarousel img={item.item.img} time={item.timerange} name={item.item.subtitle} description={item.item.text} title={item.item.title}  key={item.id} isActive={activeEventIndex == index}/>
+                return <ItemCarousel img={item.item.img} time={item.timerange} name={item.item.subtitle} description={item.item.text} title={item.item.title}  key={item.id} isActive={item.is_active}/>
             })}
 
         </Carousel>}
@@ -116,3 +97,4 @@ const CarouselWidget: FC = () => {
 };
 
 export default CarouselWidget;
+
