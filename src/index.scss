@@ -43,12 +43,16 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(227deg, #1c54ba 0%, #204187 50%, #252a48 100%);  
+  // background: linear-gradient(227deg, #1c54ba 0%, #204187 50%, #252a48 100%);  
 }
+
+// body {
+//   background: url('../shared/images/bg.svg');
+//   // background-repeat: no-repeat;
+//   // background-size: cover; 
+// }
 
 .container {
   max-width: 1312px;
