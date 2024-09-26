@@ -1,3 +1,11 @@
+```
+node v18.20.0
+yarn 1.22.22
+port: 3000
+запустить yarn dev
+
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
