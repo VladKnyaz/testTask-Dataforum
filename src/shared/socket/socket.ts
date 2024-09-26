@@ -19,13 +19,6 @@ socket.on("join", () => {
     console.log('connected');
 });
 
-
-
-// socket.on("room-status", (data) => {
-//     console.log("Сообщение 'room-status ' получено:", data);
-// });
-
-
 socket.on("connect_error", (err) => {
     console.error("Ошибка подключения:", err);
 });

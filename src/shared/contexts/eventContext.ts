@@ -53,5 +53,5 @@ export const EventContext = createContext<IProps>({
         title: "",
         schedule: []
     },
-    streamStatus: EStatusStream.waiting
+    streamStatus: null
 })
