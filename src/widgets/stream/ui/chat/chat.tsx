@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import style from "./chat.module.scss"
 import infoSvg from "./images/info.svg"
 import classnames from 'classnames';

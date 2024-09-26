@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import style from "./home.module.scss"
 import Stream from '../../widgets/stream/ui/stream';
 import CarouselWidget from '../../widgets/carousel/carousel';

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Home from '../pages/Home/home'
 import Header from '../shared/ui/header/header'

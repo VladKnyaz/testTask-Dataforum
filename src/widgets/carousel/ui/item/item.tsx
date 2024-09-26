@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import style from "./item.module.scss"
 import clasnames from "classnames";
 

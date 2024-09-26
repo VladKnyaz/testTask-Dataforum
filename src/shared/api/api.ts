@@ -1,5 +1,4 @@
-import axios, { Axios } from "axios";
-import { EventForum } from "../contexts/eventContext";
+import { Axios } from "axios";
 
 const codeEvent = import.meta.env.VITE_CODE_EVENT ?? "AAAAA11";
 const codeRoom = import.meta.env.VITE_CODE_ROOM ?? "avrora";

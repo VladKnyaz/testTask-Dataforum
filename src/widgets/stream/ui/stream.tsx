@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import style from "./stream.module.scss"
 import Chat from './chat/chat';
 import { EventContext, EventForum } from '../../../shared/contexts/eventContext';

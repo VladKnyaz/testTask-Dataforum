@@ -4,7 +4,6 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ItemCarousel from './ui/item/item';
 import { EventContext } from '../../shared/contexts/eventContext';
-import { socket } from '../../shared/socket/socket';
 import { LeftArrow, RightArrow } from './ui/arrows';
 
 
@@ -86,7 +85,7 @@ const CarouselWidget: FC = () => {
             swipeable
             
         >
-            {eventData && eventData.valueEventForum.schedule.map((item, index)=>{
+            {eventData && eventData.valueEventForum.schedule.map((item)=>{
                 return <ItemCarousel img={item.item.img} time={item.timerange} name={item.item.subtitle} description={item.item.text} title={item.item.title}  key={item.id} isActive={item.is_active}/>
             })}
 
