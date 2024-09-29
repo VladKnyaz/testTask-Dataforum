@@ -65,19 +65,21 @@ interface IPropsIndicator {
 
 const Indicator: FC<IPropsIndicator> = ({text, statusStream}) => {
 
-    if (statusStream === EStatusStream.start) {
-        return <h3 className={classNames(style.statusStream, style.green)}>Активная сессия: {text}</h3>
-    }
+    switch(statusStream) {
+        case EStatusStream.start: {
+            return <h3 className={classNames(style.statusStream, style.green)}>Активная сессия: {text}</h3>
+        }
+        case EStatusStream.stop: {
+            return <h3 className={classNames(style.statusStream, style.red)}>Трансляция закончена</h3>
+        }
+        case EStatusStream.waiting: {
+            return <h3 className={classNames(style.statusStream)}>ТРАНСЛЯЦИЯ СКОРО НАЧНЕТСЯ</h3>
+        }
+        default: {
+            return <h3 className={classNames(style.statusStream)}>ТРАНСЛЯЦИЯ ПРИОСТАНОВЛЕНА</h3>
+        }
 
-    if (statusStream === EStatusStream.stop) {
-        return <h3 className={classNames(style.statusStream, style.red)}>Трансляция закончена</h3>
     }
-
-    if (statusStream === EStatusStream.waiting) {
-        return <h3 className={classNames(style.statusStream)}>ТРАНСЛЯЦИЯ СКОРО НАЧНЕТСЯ</h3>
-    }
-
-    return <h3 className={classNames(style.statusStream)}>ТРАНСЛЯЦИЯ ПРИОСТАНОВЛЕНА</h3>
 
 };
 
